@@ -1,20 +1,22 @@
 const bookLibrary = [];
 
-function Book(title, author, pages, hasBeenRead) {
+function Book(title, author, pages, rating) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.hasBeenRead = hasBeenRead;
-
-  this.info = function() {
-    return this.title + ' by ' + 
-            this.author + ', ' +
-            this.pages + ' pages,' +
-            (this.hasBeenRead === true ? ' has been read' : ' not read yet')
-  };
+  this.rating = rating;
 }
 
 function addBookToLibrary(title, author, pages, hasBeenRead) {
   let book = new Book(title, author, pages, hasBeenRead);
-  library.push(book);
+  bookLibrary.push(book);
 }
+
+function displayLibrary() {
+  for (let book of bookLibrary) {
+    // TODO - Implement how to display the book on Web Page
+    book.info();
+  }
+}
+
+// TODO - Implement button even listener for saving a book by the end-user.
