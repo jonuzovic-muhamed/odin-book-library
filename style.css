@@ -6,9 +6,10 @@
 
 :root {
   line-height: 1.5;
+  background-color: #e4f1fe;
 }
 
-h1, h2, h3, h4, h5, figure, p, ol, ul {
+h1, h2, h3, h4, h5, figure, p, ol, ul, body {
   margin: 0;
   padding: 0;
 }
@@ -32,3 +33,135 @@ body {
   font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+header {
+  padding: 15px 15px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #e4f1fe;
+  color: #22313f;
+}
+
+header > nav > ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 50px;
+  font-size: 1.25rem;
+}
+
+header > nav > ul > li > a {
+  text-decoration: none;
+  color: #22313f;
+}
+
+header > nav > ul > li > a:hover {
+  font-weight: bold;
+}
+
+header > nav > ul > li:nth-child(1) {
+  margin-right: 100px;
+  font-weight: bold;
+  font-size: 1.75rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.hero {
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #62a9f1;
+  color: #22313f;
+  border-top: 2px solid #22313f;
+}
+
+.hero > h1 {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.hero > p {
+  font-size: 1.75rem;
+}
+
+.products {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  background-color: #e4f1fe;
+  border-top: 2px solid #22313f;
+}
+
+.add-product-item-field {
+  order: 696969;
+  border: 2px dashed #0000002f;
+  color: #0000002f;
+  border-radius: 1cap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-product-item-field:hover {
+  border-color: #22313f;
+  background-color: #bbdaf9;
+  color: #22313f;
+}
+
+.add-product-item-field:active {
+  transform: translateY(2px);
+}
+
+.product-item {
+  padding: 15px;
+  border: 2px solid #22313f;
+  border-radius: 1cap;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-item:hover {
+  background-color: #bbdaf9;
+}
+
+.product-item:active {
+  transform: translateY(2px);
+}
+
+.product-item > h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#product-item-template {
+  display: none;
+}
+
+footer {
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #34495e;
+  color: #e4f1fe;
+}
