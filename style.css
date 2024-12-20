@@ -147,6 +147,13 @@ header > nav > ul > li:nth-child(1) {
   font-weight: bold;
 }
 
+.product-item > *:nth-child(5) {
+  background-color: #34495e;
+  color: #e4f1fe;
+  border-radius: 1cap;
+  padding: 5px;
+}
+
 #product-item-template {
   display: none;
 }

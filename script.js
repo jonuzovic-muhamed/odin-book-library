@@ -23,10 +23,18 @@ function displayLibrary() {
   for (let book of bookLibrary) {
     let currentBookCard = templateBookCard.cloneNode(true);
     currentBookCard.id = `${bookCounter}`
-    currentBookCard.children[1].innerHTML = book.title;
-    currentBookCard.children[2].innerHTML = book.author;
-    currentBookCard.children[3].innerHTML = book.pages;
-    currentBookCard.children[4].innerHTML = book.hasBeenRead ? 'Has been read' : 'Has not been read';
+    currentBookCard.children[1].textContent = book.title;
+    currentBookCard.children[2].textContent = book.author;
+    currentBookCard.children[3].textContent = book.pages;
+
+    if (book.hasBeenRead) {
+      currentBookCard.children[4].textContent = 'Has been read';
+      currentBookCard.children[4].style.color = "lightgreen";
+    } else {
+      currentBookCard.children[4].textContent = 'Has not been read';
+      currentBookCard.children[4].style.color = "red";
+    }
+
     productsSection.appendChild(currentBookCard);
     bookCounter++;
   }
@@ -77,4 +85,18 @@ productsSection.addEventListener('click', (event) => {
     }
   }
 
+  if (event.target && event.target.classList.contains('product-item')) {
+    const card = event.target.closest('.product-item');
+    const cardId = card.id;
+
+    if (bookLibrary[cardId].hasBeenRead === true) {
+      bookLibrary[cardId].hasBeenRead = false;
+      card.children[4].textContent = 'Has not been read'
+      card.children[4].style.color = 'red';
+    } else {
+      bookLibrary[cardId].hasBeenRead = true;
+      card.children[4].textContent = 'Has been read'
+      card.children[4].style.color = 'lightgreen';
+    }
+  }
 })
