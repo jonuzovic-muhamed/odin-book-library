@@ -1,8 +1,10 @@
-const bookLibrary = [];
 const productsSection = document.getElementById('products-section');
 const templateBookCard = document.getElementById('product-item-template');
+const insertBookCard = document.getElementById('insert-book-card');
 
 let bookCounter = 0;
+const bookLibrary = [];
+
 
 function Book(title, author, pages, hasBeenRead) {
   this.title = title;
@@ -17,16 +19,18 @@ function addBookToLibrary(title, author, pages, hasBeenRead) {
 }
 
 function displayLibrary() {
+  productsSection.replaceChildren();
   for (let book of bookLibrary) {
     let currentBookCard = templateBookCard.cloneNode(true);
-    currentBookCard.id = `${book.title}-${bookCounter}`
-    currentBookCard.children[0].innerHTML = book.title;
-    currentBookCard.children[1].innerHTML = book.author;
-    currentBookCard.children[2].innerHTML = book.pages;
-    currentBookCard.children[3].innerHTML = book.hasBeenRead ? 'Has been read' : 'Has not been read';
+    currentBookCard.id = `${bookLibrary.indexOf(book)}`
+    currentBookCard.children[1].innerHTML = book.title;
+    currentBookCard.children[2].innerHTML = book.author;
+    currentBookCard.children[3].innerHTML = book.pages;
+    currentBookCard.children[4].innerHTML = book.hasBeenRead ? 'Has been read' : 'Has not been read';
     productsSection.appendChild(currentBookCard);
     bookCounter++;
   }
+  productsSection.appendChild(insertBookCard);
 }
 
 addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 180, true);
@@ -59,3 +63,15 @@ addBookToLibrary("The Hunger Games", "Suzanne Collins", 374, true);
 addBookToLibrary("The Catcher in the Rye", "J.D. Salinger", 214, true);
 
 displayLibrary();
+
+productsSection.addEventListener('click', (event) => {
+
+  if (event.target && event.target.classList.contains('close-card-button')) {
+    const card = event.target.closest('.product-item');
+    const cardId = card.id;
+    bookLibrary.splice(cardId, 1);
+    card.remove();
+    displayLibrary();
+  }
+
+})
