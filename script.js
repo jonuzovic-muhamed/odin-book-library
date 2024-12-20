@@ -22,7 +22,7 @@ function displayLibrary() {
   productsSection.replaceChildren();
   for (let book of bookLibrary) {
     let currentBookCard = templateBookCard.cloneNode(true);
-    currentBookCard.id = `${bookLibrary.indexOf(book)}`
+    currentBookCard.id = `${bookCounter}`
     currentBookCard.children[1].innerHTML = book.title;
     currentBookCard.children[2].innerHTML = book.author;
     currentBookCard.children[3].innerHTML = book.pages;
@@ -71,7 +71,10 @@ productsSection.addEventListener('click', (event) => {
     const cardId = card.id;
     bookLibrary.splice(cardId, 1);
     card.remove();
-    displayLibrary();
+    let children = productsSection.childNodes;
+    for(let i = 0;i <= bookLibrary.length;i++) {
+      children[i].id = i;
+    }
   }
 
 })
