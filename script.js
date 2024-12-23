@@ -85,6 +85,7 @@ productsSection.addEventListener('click', (event) => {
     for(let i = 0;i <= bookLibrary.length;i++) {
       children[i].id = i;
     }
+    productsSection.lastChild.id = 'insert-book-card';
   }
 
   if (event.target && event.target.classList.contains('product-item')) {
@@ -102,7 +103,7 @@ productsSection.addEventListener('click', (event) => {
     }
   }
 
-  if (event.target && event.target.id == 'insert-book-card') {
+  if (event.target.id == 'insert-book-card') {
     modalDialog.showModal();
   }
 });
