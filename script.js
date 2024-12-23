@@ -1,12 +1,12 @@
 const productsSection = document.getElementById('products-section');
 const templateBookCard = document.getElementById('product-item-template');
 const insertBookCard = document.getElementById('insert-book-card');
-const modalOverlay = document.getElementById('modal-overlay');
-const exitModalButton = document.getElementById('exit-modal-button');
+const modalDialog = document.getElementById('modal-dialog');
+const modalForm = document.getElementById('modal-form');
+const closeModalButton = document.getElementById('close-modal-button');
 
 let bookCounter = 0;
 const bookLibrary = [];
-
 
 function Book(title, author, pages, hasBeenRead) {
   this.title = title;
@@ -103,12 +103,57 @@ productsSection.addEventListener('click', (event) => {
   }
 
   if (event.target && event.target.id == 'insert-book-card') {
-    modalOverlay.style.display = 'block';
-    exitModalButton.style.display = 'block';
+    modalDialog.showModal();
   }
 });
 
-exitModalButton.addEventListener('click', (event) => {
-  modalOverlay.style.display = 'none';
-  exitModalButton.style.display = 'none';
+modalForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  let hasBeenRead = event.target.read.value;
+
+  if (hasBeenRead == 'yes') {
+    hasBeenRead = true;
+  } else {
+    hasBeenRead = false;
+  }
+
+  let submittedBook = new Book(
+    event.target.title.value,
+    event.target.author.value,
+    event.target.pages.value,
+    hasBeenRead
+  );
+
+  bookLibrary.push(submittedBook);
+
+  let currentBookCard = templateBookCard.cloneNode(true);
+  currentBookCard.id = bookLibrary.length - 1;
+  currentBookCard.children[1].textContent = submittedBook.title;
+  currentBookCard.children[2].textContent = submittedBook.author;
+  currentBookCard.children[3].textContent = submittedBook.pages;
+
+  if (submittedBook.hasBeenRead) {
+    currentBookCard.children[4].textContent = 'Has been read';
+    currentBookCard.children[4].style.color = "lightgreen";
+  } else {
+    currentBookCard.children[4].textContent = 'Has not been read';
+    currentBookCard.children[4].style.color = "red";
+  }
+
+  productsSection.appendChild(currentBookCard);
+
+  modalForm.reset();
+  modalDialog.close();
 });
+
+closeModalButton.addEventListener('click', (event) => {
+  modalForm.reset();
+  modalDialog.close();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    modalForm.reset();
+  }
+})
