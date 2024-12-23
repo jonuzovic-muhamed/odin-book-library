@@ -188,3 +188,33 @@ footer {
   background-color: #34495e;
   color: #e4f1fe;
 }
+
+.overlay {
+  display: none;
+  background: rgba(0, 0, 0, 0.65);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+#exit-modal-button {
+  display: none;
+  position: fixed;
+  right: 50px;
+  top: 50px;
+  z-index: 1;
+  border: 0;
+  border-radius: 1rem;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0);
+  color: #e4f1fe;
+  font-size: 2rem;
+}
+
+#exit-modal-button:hover {
+  background-color: #e4f1fe;
+  color: #22313f;
+}

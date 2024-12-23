@@ -1,6 +1,8 @@
 const productsSection = document.getElementById('products-section');
 const templateBookCard = document.getElementById('product-item-template');
 const insertBookCard = document.getElementById('insert-book-card');
+const modalOverlay = document.getElementById('modal-overlay');
+const exitModalButton = document.getElementById('exit-modal-button');
 
 let bookCounter = 0;
 const bookLibrary = [];
@@ -99,4 +101,14 @@ productsSection.addEventListener('click', (event) => {
       card.children[4].style.color = 'lightgreen';
     }
   }
-})
+
+  if (event.target && event.target.id == 'insert-book-card') {
+    modalOverlay.style.display = 'block';
+    exitModalButton.style.display = 'block';
+  }
+});
+
+exitModalButton.addEventListener('click', (event) => {
+  modalOverlay.style.display = 'none';
+  exitModalButton.style.display = 'none';
+});
