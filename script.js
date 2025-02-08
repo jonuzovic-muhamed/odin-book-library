@@ -137,7 +137,7 @@ productsSection.addEventListener('click', (event) => {
     }
   }
 
-  if (event.target.id == 'insert-book-card') {
+  if (event.target.id === 'insert-book-card') {
     modalDialog.showModal();
   }
 });
@@ -147,11 +147,7 @@ modalForm.addEventListener('submit', (event) => {
 
   let hasBeenRead = event.target.read.value;
 
-  if (hasBeenRead == 'yes') {
-    hasBeenRead = true;
-  } else {
-    hasBeenRead = false;
-  }
+  hasBeenRead = hasBeenRead === 'yes';
 
   let submittedBook = new Book(
     event.target.title.value,
