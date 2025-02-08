@@ -150,16 +150,11 @@ productsSection.addEventListener('click', (event) => {
 modalForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  let hasBeenRead = event.target.read.value;
-
-  hasBeenRead = hasBeenRead === 'yes';
-
-  let submittedBook = new Book(
-    event.target.title.value,
-    event.target.author.value,
-    event.target.pages.value,
-    hasBeenRead
-  );
+  let submittedBook = new Book();
+  submittedBook.author = event.target.author.value;
+  submittedBook.title = event.target.title.value;
+  submittedBook.pages = event.target.pages.value;
+  submittedBook.hasBeenRead = event.target.read.value === 'yes';
 
   bookLibrary.push(submittedBook);
 
