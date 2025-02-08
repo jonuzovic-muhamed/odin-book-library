@@ -9,43 +9,48 @@ let bookCounter = 0;
 const bookLibrary = [];
 
 class Book {
+  #title;
+  #author;
+  #pages;
+  #hasBeenRead;
+
   constructor(title, author, pages, hasBeenRead) {
-    this._title = title;
-    this._author = author;
-    this._pages = pages;
-    this._hasBeenRead = hasBeenRead;
+    this.#title = title;
+    this.#author = author;
+    this.#pages = pages;
+    this.#hasBeenRead = hasBeenRead;
   }
 
   get title() {
-    return this._title;
+    return this.#title;
   }
 
   set title(value) {
-    this._title = value;
+    this.#title = value;
   }
 
   get author() {
-    return this._author;
+    return this.#author;
   }
 
   set author(value) {
-    this._author = value;
+    this.#author = value;
   }
 
   get pages() {
-    return this._pages;
+    return this.#pages;
   }
 
   set pages(value) {
-    this._pages = value;
+    this.#pages = value;
   }
 
   get hasBeenRead() {
-    return this._hasBeenRead;
+    return this.#hasBeenRead;
   }
 
   set hasBeenRead(value) {
-    this._hasBeenRead = value;
+    this.#hasBeenRead = value;
   }
 }
 
