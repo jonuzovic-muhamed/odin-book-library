@@ -179,7 +179,7 @@ modalForm.addEventListener('submit', (event) => {
   modalDialog.close();
 });
 
-closeModalButton.addEventListener('click', (event) => {
+closeModalButton.addEventListener('click', () => {
   modalForm.reset();
   modalDialog.close();
 });
