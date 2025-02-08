@@ -8,12 +8,49 @@ const closeModalButton = document.getElementById('close-modal-button');
 let bookCounter = 0;
 const bookLibrary = [];
 
-function createBook(title, author, pages, hasBeenRead) {
-  return {title, author, pages, hasBeenRead};
+class Book {
+  constructor(title, author, pages, hasBeenRead) {
+    this._title = title;
+    this._author = author;
+    this._pages = pages;
+    this._hasBeenRead = hasBeenRead;
+  }
+
+  get title() {
+    return this._title;
+  }
+
+  set title(value) {
+    this._title = value;
+  }
+
+  get author() {
+    return this._author;
+  }
+
+  set author(value) {
+    this._author = value;
+  }
+
+  get pages() {
+    return this._pages;
+  }
+
+  set pages(value) {
+    this._pages = value;
+  }
+
+  get hasBeenRead() {
+    return this._hasBeenRead;
+  }
+
+  set hasBeenRead(value) {
+    this._hasBeenRead = value;
+  }
 }
 
 function addBookToLibrary(title, author, pages, hasBeenRead) {
-  let book = createBook(title, author, pages, hasBeenRead);
+  let book = new Book(title, author, pages, hasBeenRead);
   bookLibrary.push(book);
 }
 
@@ -116,7 +153,7 @@ modalForm.addEventListener('submit', (event) => {
     hasBeenRead = false;
   }
 
-  let submittedBook = createBook(
+  let submittedBook = new Book(
     event.target.title.value,
     event.target.author.value,
     event.target.pages.value,
