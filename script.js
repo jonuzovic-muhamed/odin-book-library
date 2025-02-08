@@ -8,12 +8,54 @@ const closeModalButton = document.getElementById('close-modal-button');
 let bookCounter = 0;
 const bookLibrary = [];
 
-function createBook(title, author, pages, hasBeenRead) {
-  return {title, author, pages, hasBeenRead};
+class Book {
+  #title;
+  #author;
+  #pages;
+  #hasBeenRead;
+
+  constructor(title, author, pages, hasBeenRead) {
+    this.#title = title;
+    this.#author = author;
+    this.#pages = pages;
+    this.#hasBeenRead = hasBeenRead;
+  }
+
+  get title() {
+    return this.#title;
+  }
+
+  set title(value) {
+    this.#title = value;
+  }
+
+  get author() {
+    return this.#author;
+  }
+
+  set author(value) {
+    this.#author = value;
+  }
+
+  get pages() {
+    return this.#pages;
+  }
+
+  set pages(value) {
+    this.#pages = value;
+  }
+
+  get hasBeenRead() {
+    return this.#hasBeenRead;
+  }
+
+  set hasBeenRead(value) {
+    this.#hasBeenRead = value;
+  }
 }
 
 function addBookToLibrary(title, author, pages, hasBeenRead) {
-  let book = createBook(title, author, pages, hasBeenRead);
+  let book = new Book(title, author, pages, hasBeenRead);
   bookLibrary.push(book);
 }
 
@@ -100,7 +142,7 @@ productsSection.addEventListener('click', (event) => {
     }
   }
 
-  if (event.target.id == 'insert-book-card') {
+  if (event.target.id === 'insert-book-card') {
     modalDialog.showModal();
   }
 });
@@ -108,20 +150,11 @@ productsSection.addEventListener('click', (event) => {
 modalForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  let hasBeenRead = event.target.read.value;
-
-  if (hasBeenRead == 'yes') {
-    hasBeenRead = true;
-  } else {
-    hasBeenRead = false;
-  }
-
-  let submittedBook = createBook(
-    event.target.title.value,
-    event.target.author.value,
-    event.target.pages.value,
-    hasBeenRead
-  );
+  let submittedBook = new Book();
+  submittedBook.author = event.target.author.value;
+  submittedBook.title = event.target.title.value;
+  submittedBook.pages = event.target.pages.value;
+  submittedBook.hasBeenRead = event.target.read.value === 'yes';
 
   bookLibrary.push(submittedBook);
 
@@ -146,7 +179,7 @@ modalForm.addEventListener('submit', (event) => {
   modalDialog.close();
 });
 
-closeModalButton.addEventListener('click', (event) => {
+closeModalButton.addEventListener('click', () => {
   modalForm.reset();
   modalDialog.close();
 });
